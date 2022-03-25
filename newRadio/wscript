@@ -1,0 +1,147 @@
+# -*- Mode: python; py-indent-offset: 4; indent-tabs-mode: nil; coding: utf-8; -*-
+
+# def options(opt):
+#     pass
+
+# def configure(conf):
+#     conf.check_nonfatal(header_name='stdint.h', define_name='HAVE_STDINT_H')
+
+def build(bld):
+    module = bld.create_ns3_module('newradio', ['core','network', 'spectrum', 'virtual-net-device','point-to-point','applications','internet', 'lte', 'propagation'])
+    module.source = [
+        'helper/newradio-helper.cc',
+        'helper/newradio-phy-rx-trace.cc',
+        'helper/newradio-point-to-point-epc-helper.cc',
+        'helper/newradio-bearer-stats-calculator.cc',
+        'helper/newradio-bearer-stats-connector.cc',
+        'helper/mc-stats-calculator.cc',
+        'helper/core-network-stats-calculator.cc',
+        'model/newradio-net-device.cc',
+        'model/newradio-enb-net-device.cc',
+        'model/newradio-ue-net-device.cc',
+        'model/newradio-phy.cc',
+        'model/newradio-enb-phy.cc',
+        'model/newradio-ue-phy.cc',
+        'model/newradio-spectrum-phy.cc',
+        'model/newradio-spectrum-value-helper.cc',
+        'model/newradio-beamforming.cc',
+        'model/newradio-interference.cc',
+        'model/newradio-chunk-processor.cc',
+        'model/newradio-mac.cc',
+        'model/newradio-mac-scheduler.cc',
+        'model/newradio-control-messages.cc',
+        'model/newradio-spectrum-signal-parameters.cc',
+        'model/newradio-radio-bearer-tag.cc',
+        'model/newradio-amc.cc',
+        'model/newradio-phy-mac-common.cc',
+        'model/newradio-mac-sched-sap.cc',
+        'model/newradio-mac-csched-sap.cc',
+        'model/newradio-phy-sap.cc',
+        'model/newradio-mi-error-model.cc',
+        'model/newradio-enb-mac.cc',
+        'model/newradio-ue-mac.cc',
+        'model/newradio-rrc-protocol-ideal.cc',
+        'model/newradio-lte-rrc-protocol-real.cc',
+        'model/newradio-channel-matrix.cc',
+		'model/buildings-obstacle-propagation-loss-model.cc',
+        'model/newradio-mac-pdu-header.cc',
+        'model/newradio-mac-pdu-tag.cc',
+        'model/newradio-harq-phy.cc',
+        'model/newradio-flex-tti-mac-scheduler.cc',
+        'model/newradio-flex-tti-maxweight-mac-scheduler.cc',
+        'model/newradio-flex-tti-maxrate-mac-scheduler.cc',
+        'model/newradio-flex-tti-pf-mac-scheduler.cc',
+        'model/newradio-propagation-loss-model.cc',
+        'model/antenna-array-model.cc',
+        'model/newradio-channel-raytracing.cc',
+        'model/mc-ue-net-device.cc',
+        'model/newradio-los-tracker.cc',
+        'model/newradio-3gpp-propagation-loss-model.cc',
+        'model/newradio-3gpp-channel.cc',
+        'model/newradio-3gpp-buildings-propagation-loss-model.cc',
+        'model/newradio-component-carrier.cc',
+        'model/newradio-component-carrier-ue.cc',
+        'model/newradio-component-carrier-enb.cc',
+        'model/newradio-no-op-component-carrier-manager.cc'
+        #'model/newradio-enb-cmac-sap.cc',
+        #'model/newradio-enb-rrc.cc',
+        #'model/newradio-mac-sap.cc',
+        #'model/newradio-rrc-sap.cc',
+        #'model/newradio-rlc.cc',
+        #'model/newradio-rlc-sap.cc'
+        ]
+
+    module_test = bld.create_ns3_module_test_library('newradio')
+    module_test.source = [
+        #'newradio-test-suite.cc'
+        ]
+
+    headers = bld(features='ns3header')
+    headers.module = 'newradio'
+    headers.source = [
+        'helper/newradio-helper.h',
+        'helper/newradio-phy-rx-trace.h',
+        'helper/newradio-point-to-point-epc-helper.h',
+        'helper/newradio-bearer-stats-calculator.h',
+        'helper/mc-stats-calculator.h',
+        'helper/core-network-stats-calculator.h',
+        'helper/newradio-bearer-stats-connector.h',
+        'model/newradio-net-device.h',
+        'model/newradio-enb-net-device.h',
+        'model/newradio-ue-net-device.h',
+        'model/newradio-phy.h',
+        'model/newradio-enb-phy.h',
+        'model/newradio-ue-phy.h',
+        'model/newradio-spectrum-phy.h',
+        'model/newradio-spectrum-value-helper.h',
+        'model/newradio-beamforming.h',
+        'model/newradio-interference.h',
+        'model/newradio-chunk-processor.h',
+        'model/newradio-mac.h',
+        'model/newradio-phy-mac-common.h',
+        'model/newradio-mac-scheduler.h',
+        'model/newradio-control-messages.h',
+        'model/newradio-spectrum-signal-parameters.h',
+        'model/newradio-radio-bearer-tag.h',
+        'model/newradio-amc.h',
+        'model/newradio-mac-sched-sap.h',
+        'model/newradio-mac-csched-sap.h',
+        'model/newradio-phy-sap.h',
+        'model/newradio-mi-error-model.h',
+        'model/newradio-enb-mac.h',
+        'model/newradio-ue-mac.h',
+        'model/newradio-rrc-protocol-ideal.h',
+        'model/newradio-lte-rrc-protocol-real.h',
+        'model/newradio-channel-matrix.h',
+		'model/buildings-obstacle-propagation-loss-model.h',
+        'model/newradio-mac-pdu-header.h',
+        'model/newradio-mac-pdu-tag.h',
+        'model/newradio-harq-phy.h',
+        'model/newradio-flex-tti-mac-scheduler.h',
+        'model/newradio-flex-tti-maxweight-mac-scheduler.h',
+        'model/newradio-flex-tti-maxrate-mac-scheduler.h',
+        'model/newradio-flex-tti-pf-mac-scheduler.h',
+        'model/newradio-propagation-loss-model.h',
+        'model/antenna-array-model.h',
+        'model/newradio-channel-raytracing.h',
+        'model/mc-ue-net-device.h',
+        'model/newradio-los-tracker.h' ,
+        'model/newradio-3gpp-propagation-loss-model.h',
+        'model/newradio-3gpp-channel.h',
+        'model/newradio-3gpp-buildings-propagation-loss-model.h',
+        'model/newradio-component-carrier.h',
+        'model/newradio-component-carrier-ue.h',
+        'model/newradio-component-carrier-enb.h',
+        'model/newradio-no-op-component-carrier-manager.h'
+        #'model/newradio-enb-cmac-sap.h',
+        #'model/newradio-enb-rrc.h',
+        #'model/newradio-mac-sap.h',
+        #'model/newradio-rrc-sap.h',
+        #'model/newradio-rlc.h',
+        #'model/newradio-rlc-sap.h'
+        ]
+
+    if bld.env.ENABLE_EXAMPLES:
+        bld.recurse('examples')
+
+    bld.ns3_python_bindings()
